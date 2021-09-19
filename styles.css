@@ -29,10 +29,11 @@ body {
     border: 1px solid rgb(151, 177, 163);
     display: flex;
     justify-content: center;
-    align-items: center;--------
+    align-items: center;
     position: relative;
 }
 
+/*---------------- X mark ------------------*/
 .cell.x::before,
 .cell.x::after {
     content: '';
@@ -50,6 +51,14 @@ body {
     transform: rotate(-45deg)
 }
 
+/*---------------- O & X mark not allowed cursor------------------*/
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+/*---------------- O mark ------------------*/
 .cell.circle::before,
 .cell.circle::after {
     content: '';
@@ -64,8 +73,9 @@ body {
 }
 
 .cell.circle::after {
-   
+    
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: rgb(168, 255, 214);
 }
+
