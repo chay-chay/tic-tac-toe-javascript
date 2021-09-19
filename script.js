@@ -24,7 +24,7 @@ function startGame() {
       // console.log(cell)
     cell.addEventListener("click", handleClick, { once: true });
     });
-    setBoardHoverClss();
+    setBoardHoverClass();
 }
 
 function handleClick(e) {
@@ -32,12 +32,16 @@ function handleClick(e) {
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
   placeMark(cell, currentClass);
   if (checkWin(currentClass)) {
-    // console.log('win')
     endGame(false)
-  } 
+  } else if (isDraw()) {
+      endGame(true)
+  } else {
+      swapTurns()
+      setBoardHoverClass()
+  }
   //place mark
-  swapTurns()
-  setBoardHoverClss()
+  //   swapTurns()
+  //   setBoardHoverClass()
   // check for Win
   // check for Draw
   // switch Turns
@@ -45,12 +49,17 @@ function handleClick(e) {
 
 function endGame(draw) {
     if (draw) {
-        
+        winningMessageTextElement.innerText = 'Draw!'
     } else {
-        console.log("Win!")
         winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's" } Wins! `
     }
     winningMessageElement.classList.add('show')
+}
+
+function isDraw() {
+    return [...cellElements].every( cell => {
+        return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
+    })
 }
 
 function placeMark(cell, currentClass) {
@@ -61,7 +70,7 @@ function swapTurns() {
     circleTurn = !circleTurn
 }
 
-function setBoardHoverClss() {
+function setBoardHoverClass() {
 board.classList.remove(X_CLASS);
 board.classList.remove(CIRCLE_CLASS)
 if (circleTurn) {
