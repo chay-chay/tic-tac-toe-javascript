@@ -40,30 +40,36 @@ body {
     cursor: not-allowed;
 }
 
-.board.x .cell:hover {
+.cell.x::before,
+.cell.x::after {
+    background-color: rgb(137, 221, 247);
+}
 
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after  {
+    background-color: rgb(212, 240, 247);
 }
 
 
 /*---------------- X mark ------------------*/
 .cell.x::before,
 .cell.x::after,
-.board.x .cell:hover::before,
-.board.x .cell:hover::after {
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
     content: '';
     position:absolute;
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
-    background-color: rgb(137, 221, 247);
+    ;
 }
 
 .cell.x::before,
-.board.x .cell:hover::before {
+.board.x .cell:not(.x):not(.circle):hover::before {
     transform: rotate(45deg);
 }
 
 .cell.x::after,
-.board.x .cell:hover::after {
+.board.x .cell:not(.x):not(.circle):hover::after {
     transform: rotate(-45deg)
 }
 
