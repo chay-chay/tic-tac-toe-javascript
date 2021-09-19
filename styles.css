@@ -128,3 +128,39 @@ body {
     background-color: rgb(168, 255, 214);
 }
 
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.678);
+    
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color:white;
+    border: 1px solid rgb(76, 243, 165);
+    padding: .25em .5em;
+    cursor: pointer;
+    color: rgb(76, 243, 165);
+    border-radius: 15px;
+}
+
+.winning-message button:hover {
+    background-color: rgb(168, 255, 214);
+    border-color: white;
+    color: white;
+}
+
+/* set up when show .flex modal will be shown */
+.winning-message.show {
+    display: flex;    
+}
