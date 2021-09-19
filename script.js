@@ -13,6 +13,8 @@ const WINNING_COMBINATIONS = [
 
 const cellElements = document.querySelectorAll("[data-cell]");
 const board = document.getElementById('board');
+const winningMessageElement = document.getElementById('winningMessage');
+const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 let circleTurn;
 
 startGame()
@@ -30,7 +32,8 @@ function handleClick(e) {
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
   placeMark(cell, currentClass);
   if (checkWin(currentClass)) {
-    console.log('win')
+    // console.log('win')
+    endGame(false)
   } 
   //place mark
   swapTurns()
@@ -38,6 +41,16 @@ function handleClick(e) {
   // check for Win
   // check for Draw
   // switch Turns
+}
+
+function endGame(draw) {
+    if (draw) {
+        
+    } else {
+        console.log("Win!")
+        winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's" } Wins! `
+    }
+    winningMessageElement.classList.add('show')
 }
 
 function placeMark(cell, currentClass) {
@@ -61,6 +74,7 @@ if (circleTurn) {
 function checkWin(currentClass) {
   return WINNING_COMBINATIONS.some(combination => {
     return combination.every(index => {
+        // if currentclass is in all of this cell in WInnin pattern, then we're the winner
       return cellElements[index].classList.contains(currentClass)
     })
   })
